@@ -1,2 +1,4 @@
 
 GET localhost:8080/api/courses
+###
+GET localhost:8080/api/courses/1

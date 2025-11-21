@@ -24,9 +24,16 @@ public class CourseRepository implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-    courses.add(new Course(1L, "java"));
-    courses.add(new Course(2L, "html"));
-    courses.add(new Course(1L, "Spring"));
-    courses.add(new Course(1L, "kotlin"));
+        courses.add(new Course(1L, "java"));
+        courses.add(new Course(2L, "html"));
+        courses.add(new Course(1L, "Spring"));
+        courses.add(new Course(1L, "kotlin"));
+    }
+
+    public Course findCourseById(Integer id) {
+        return courses.stream()
+                .filter(c -> c.id().equals(id.longValue()))
+                .findFirst()
+                .orElse(null);
     }
 }

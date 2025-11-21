@@ -2,6 +2,7 @@ package com.yamzil.springretrydemo.course;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +27,15 @@ public class CourseController {
     public ResponseEntity getCourses() {
         try {
             return courseService.getAllCourses();
+        } catch (Exception e) {
+            return ResponseEntity.status(503).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getCourses(@PathVariable Integer id) {
+        try {
+            return courseService.findCourseById(id);
         } catch (Exception e) {
             return ResponseEntity.status(503).body(e.getMessage());
         }
